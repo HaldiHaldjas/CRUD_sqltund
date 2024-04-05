@@ -1,8 +1,8 @@
 <?php
     define("DB_SERVER", "localhost"); // Serveri nimi
-    define("DB_USER", ""); // Andmebaasi kasutajanimi
-    define("DB_PASS", ""); // Andmebaasi parool
-    define("DB_NAME", ""); // Andmebaasi nimi
+    define("DB_USER", "haldi"); // Andmebaasi kasutajanimi
+    define("DB_PASS", "Parool1"); // Andmebaasi parool
+    define("DB_NAME", "simple.sql"); // Andmebaasi nimi
     define("MAXPERPAGE", 5); // Mitu kirjet lehel (5)
     
     class Db {

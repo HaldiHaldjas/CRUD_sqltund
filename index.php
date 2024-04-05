@@ -1,3 +1,4 @@
+<?php require_once "config/mysqli.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +33,22 @@
     <!-- Siin toimub autmaatne sisu lugemine -->
     <div class="container">
         <!-- Siia tuleb üks kompleksne if lause :) -->
+        <?php 
+        if (isset($_GET["page"])) {
+            $file = $_GET["page"].".php";
+            // testimiseks 
+            // $database->show($_GET);
+            // echo $file;
+            if(file_exists($file) && is_file($file)){
+                require_once $file;
+            } else {
+                echo "Vigane fail".$file; // avalikus variandis pole hea seda kasutada
+            }
+        } else {
+            // kui page pole, näita avalehte
+            include_once "homepage.php";
+
+        }?>
     </div>
 </body>
 
