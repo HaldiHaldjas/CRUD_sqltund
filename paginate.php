@@ -32,25 +32,36 @@ $start = $nextStart - $maxPerPage;
 ?>
 <nav aria-label="Page navigation">
     <ul class="pagination pagination-color justify-content-center">
-        <li class="page-item">
-            <a class="page-link" href="index.php?pg=<?php echo (($pg - 1) == 0) ? "1" :($pg -1 ); ?>" aria-label="Previous">
+    <li class="page-item">
+            <a class="page-link <?php echo ($pg == 1) ? "disabled" : null; ?>" href="index.php?pg=1" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link <?php echo ($pg == 1) ? "disabled" : null; ?>" href="index.php?pg=<?php echo (($pg - 1) == 0) ? "1" :($pg -1 ); ?>" aria-label="Previous">
+                <span aria-hidden="true">&lsaquo;</span>
             </a>
         </li>
         <?php 
         // for-loop algus
         // muudame number ühe ära 
+        // numbri tagant siniseks - active
         for($x = 0; $x < $pageCount; $x++) {
             ?>
             <li class="page-item">
-                <a class="page-link" href="index.php?pg=<?php echo ($x + 1); ?>"><?php echo ($x + 1); ?></a>
+                <a class="page-link <?php echo (($x + 1) == $pg) ? "active" : null; ?>" href="index.php?pg=<?php echo ($x + 1); ?>"><?php echo ($x + 1); ?></a>
             </li>
             <?php
         // for-loop lõpp
         }
         ?>
         <li class="page-item">
-            <a class="page-link" href="index.php?pg=<?php echo (($pg + 1) > $pageCount) ? "$pageCount" :($pg + 1 ); ?>" aria-label="Next">
+            <a class="page-link <?php echo ($pg >= $pageCount) ? "disabled" : null; ?>" href="index.php?pg=<?php echo (($pg + 1) > $pageCount) ? "$pageCount" :($pg + 1 ); ?>" aria-label="Next">
+                <span aria-hidden="true">&rsaquo;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link <?php echo ($pg >= $pageCount) ? "disabled" : null; ?>" href="index.php?pg=<?php echo $pageCount ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>

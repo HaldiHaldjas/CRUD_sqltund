@@ -1,12 +1,56 @@
 <?php
 // Kas submit nuppu on vajutatud
+if (isset($_POST["submit"])) {
+    // võtame vormi sisestatud andmed ja paneme muutujatesse - 2 moodi 
+    $name = $_POST["name"];
+    $birth = $database->getVar("birth");
+    $salary = $_POST["salary"];
+    $height = $_POST["height"];
+    if (empty($salary)) {
+        $salary = "NULL";
+    }
+    if (empty($height)) {
+        $height = "NULL";
+    }
+    $sql = "INSERT INTO simple 
+    (name, birth, salary, height, added)
+    VALUES (" . $database->dbFix($name) . ", " . $database->dbFix($birth) . ", " . $salary . ", " . $height . ", NOW())";
+    // kontrolliks echo $sql;
+    if ($database->dbQuery($sql)) {
+        $success = true;
+        // kuna laeb uuesti lehe, kustutame posti sisu ära
+        $_POST = array();
+        // php enda funktsioon 
+    } else {
+        $success = false;
+    }
+}
 ?>
 <div class="row">
     <div class="col-md-8 mx-auto">
         <h2 class="text-center">Create - Tee uus sissekanne</h2>
 
         <?php
-        // Siia tuleb kas roheline või punane teavitus kast lisamise kohta
+        // Siia tuleb kas roheline või punane teavituskast lisamise kohta
+        // if lause, kas läks andmebaasi kirjutamine läbi
+        // kas muutuja on olemas ja kas success on true
+        // kas läks andmebaasi või ei läinud 
+        if (isset($success) && $success) {
+            ?> 
+            <div class="alert alert-success">
+                Sissekanne tabelisse on tehtud! 
+            </div>
+            <?php
+
+        } else if(isset($success) && !$success) {
+            ?> 
+            <div class="alert alert-danger">
+                Sissekanne tabelisse ei õnnestunud! 
+            </div>
+            <?php
+
+        }
+
         ?>
 
         <form action="#" method="post">
