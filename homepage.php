@@ -7,7 +7,7 @@ $sql = "SELECT * FROM simple ORDER BY added DESC LIMIT ".$start.", ".$maxPerPage
 // andmebaasi tulemus on $res
 $res = $database->dbGetArray($sql);
 if ($res !== false){
-    // kontroll, kas näitab andmebaasi kirjeid - $database->show($res);
+    // kontroll, kas näitab andmebaasi kirjeid - $database->show($res);a
 ?>
 
 <table class="table table-hover table-bordered">
@@ -27,7 +27,6 @@ if ($res !== false){
             $birth = $date->format("d.m.Y");
             $dateTime = new DateTime($val["added"]);
             $added = $dateTime->format("d.m.Y H:i:s");
-
         ?>
         <tr>
             <td>
